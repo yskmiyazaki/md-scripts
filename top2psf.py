@@ -93,7 +93,7 @@ def read_itp(itps):
                     mass = "10.0"
                     mflag = True
                 mol_dct[molname]["atom"].append([atype, rname, aname, charge, mass, mflag])
-            elif read_flag == 'bonds' or 'constraints':
+            elif read_flag == 'bonds' or read_flag == 'constraints':
                 b1 = data[0]
                 b2 = data[1]
                 mol_dct[molname]["bond"].append([b1, b2])
@@ -105,7 +105,7 @@ def read_itp(itps):
             elif read_flag == 'settles':
                 mol_dct[molname]["bond"].append(['1', '2'])
                 mol_dct[molname]["bond"].append(['1', '3'])
-                mol_dct[molname]["bond"].append(['2', '3'])
+                #mol_dct[molname]["bond"].append(['2', '3'])
                 mol_dct[molname]["angle"].append(['2', '1', '3'])
             elif read_flag == 'dihedrals':
                 dihed_type = data[4]
@@ -175,6 +175,8 @@ def write_psf(fname, mol_lst, mol_dct, atm_dct):
                 mflag = mol_dct[mol]["atom"][ia][5]
                 if len(mol) > 4:
                     mname = mol[:4]
+                else:
+                    mname = mol
                 if mflag:
                     try:
                        mass = atm_dct[atype][0]
