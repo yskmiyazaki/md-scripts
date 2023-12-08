@@ -15,6 +15,8 @@ def get_option():
     argparser.add_argument('-o', metavar='psf_file', type=str,
                             default=psff,
                             help='output psf file name (default: out.psf)')
+    argparser.add_argument('-hhbond', action='store_true',
+                            help='add H-H bonds in water molecules (default: off)')
     return argparser.parse_args()
 
 
@@ -53,7 +55,7 @@ def output_info(mol_lst, itps):
 
 
 ### Read included itps and make molecule/atom dict. ###
-def read_itp(itps):
+def read_itp(itps, hhbond):
     mol_dct = {}
     atm_dct = {}
     for itp in itps:
@@ -105,7 +107,8 @@ def read_itp(itps):
             elif read_flag == 'settles':
                 mol_dct[molname]["bond"].append(['1', '2'])
                 mol_dct[molname]["bond"].append(['1', '3'])
-                #mol_dct[molname]["bond"].append(['2', '3'])
+                if hhbond:
+                    mol_dct[molname]["bond"].append(['2', '3'])
                 mol_dct[molname]["angle"].append(['2', '1', '3'])
             elif read_flag == 'dihedrals':
                 dihed_type = data[4]
@@ -276,9 +279,10 @@ def main():
     args = get_option()
     topf = args.f
     psff = args.o
+    hhbond = args.hhbond
     mol_lst, itps = read_top(topf)
     output_info(mol_lst, itps)
-    mol_dct, atm_dct = read_itp(itps)
+    mol_dct, atm_dct = read_itp(itps, hhbond)
     write_psf(psff, mol_lst, mol_dct, atm_dct)
 
 
