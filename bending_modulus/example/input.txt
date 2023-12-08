@@ -1,0 +1,8 @@
+psffile sample.psf
+dcdfile sample.dcd
+output  ret.dat
+lipid   POPC
+heads   PH
+tails   EST1 EST2
+begin   0
+end     50
