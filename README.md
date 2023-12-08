@@ -31,3 +31,6 @@ The example command-line working in `post` directory will be:
 
 `ret_long.dat` is the spectrum data obtained using `bend_mod`. The second and third arguments are temperature 
 and the number of the spectrum data used to compute the bending modulus.
+
+## lj3d_education  
+Training codes (for bachelor students in our group) to run MD simulation of simple lj fluid.  
