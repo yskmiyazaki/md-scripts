@@ -33,4 +33,9 @@ The example command-line working in `post` directory will be:
 and the number of the spectrum data used to compute the bending modulus.
 
 ## lj3d_education  
-Training codes (for bachelor students in our group) to run MD simulation of simple lj fluid.  
+Training codes (for bachelor students of our group) to run MD simulation of simple lj fluid.  
+You can simulate the lj fluid consisting of 256 particles in liquid and gas phases by doing    
+
+    ./run.sh
+
+The shell script does compile the cpp files for the simulation and radial distribution function analysis.  
