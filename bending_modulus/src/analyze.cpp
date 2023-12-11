@@ -150,35 +150,35 @@ void LipidBilayer::get_orientation(Complex **vnLx, Complex **vnLy, const int lay
   }
   // interpolate zero values with neighbors
   for (int i = 0; i < 2; i++) {
-  	for (int iy = 0; iy < Nf; iy++) { 	
-  	  for (int ix = 0; ix < Nf; ix++) {
-  	    if (count[iy][ix] == 0) {
-  	      const int N = Nf;
-  	      int n = 0;
-  	      int nxp = count[iy][(ix + 1) % N];
-  	      int nxm = count[iy][(ix + N - 1) % N];
-  	      int nyp = count[(iy + 1) % N][ix];
-  	      int nym = count[(iy + N - 1) % N][ix];
-  	      double xxp = vnLx[iy][(ix + 1) % N].real;
-  	      double xxm = vnLx[iy][(ix + N - 1) % N].real;
-  	      double xyp = vnLx[(iy + 1) % N][ix].real;
-  	      double xym = vnLx[(iy + N - 1) % N][ix].real;
-  	      double yxp = vnLy[iy][(ix + 1) % N].real;
-  	      double yxm = vnLy[iy][(ix + N - 1) % N].real;
-  	      double yyp = vnLy[(iy + 1) % N][ix].real;
-  	      double yym = vnLy[(iy + N - 1) % N][ix].real;
-  	      if (nxp > 0) n++;
-  	      if (nxm > 0) n++;
-  	      if (nyp > 0) n++;
-  	      if (nym > 0) n++;
-  	      if (n > 0) {
-  	        vnLx[iy][ix].real = (xxp + xxm + xyp + xym)/n;
-  	        vnLy[iy][ix].real = (yxp + yxm + yyp + yym)/n;
-  	        count[iy][ix] = 1;
-  	      }
-  	    }
-  	  }
-  	}
+    for (int iy = 0; iy < Nf; iy++) { 	
+      for (int ix = 0; ix < Nf; ix++) {
+        if (count[iy][ix] == 0) {
+          const int N = Nf;
+          int n = 0;
+          int nxp = count[iy][(ix + 1) % N];
+          int nxm = count[iy][(ix + N - 1) % N];
+          int nyp = count[(iy + 1) % N][ix];
+          int nym = count[(iy + N - 1) % N][ix];
+          double xxp = vnLx[iy][(ix + 1) % N].real;
+          double xxm = vnLx[iy][(ix + N - 1) % N].real;
+          double xyp = vnLx[(iy + 1) % N][ix].real;
+          double xym = vnLx[(iy + N - 1) % N][ix].real;
+          double yxp = vnLy[iy][(ix + 1) % N].real;
+          double yxm = vnLy[iy][(ix + N - 1) % N].real;
+          double yyp = vnLy[(iy + 1) % N][ix].real;
+          double yym = vnLy[(iy + N - 1) % N][ix].real;
+          if (nxp > 0) n++;
+          if (nxm > 0) n++;
+          if (nyp > 0) n++;
+          if (nym > 0) n++;
+          if (n > 0) {
+            vnLx[iy][ix].real = (xxp + xxm + xyp + xym)/n;
+            vnLy[iy][ix].real = (yxp + yxm + yyp + yym)/n;
+            count[iy][ix] = 1;
+          }
+        }
+      }
+    }
   }
 }
 
