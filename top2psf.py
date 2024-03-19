@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
+import sys
 from argparse import ArgumentParser
 from pathlib import Path
 
@@ -275,7 +276,6 @@ def write_psf(fname, mol_lst, mol_dct, atm_dct):
 
 
 def main():
-    print("top2psf")
     args = get_option()
     topf = args.f
     psff = args.o
@@ -284,7 +284,7 @@ def main():
     output_info(mol_lst, itps)
     mol_dct, atm_dct = read_itp(itps, hhbond)
     write_psf(psff, mol_lst, mol_dct, atm_dct)
-
+    return 0
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())
