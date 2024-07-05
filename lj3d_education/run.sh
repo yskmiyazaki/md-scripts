@@ -1,12 +1,12 @@
 #!/bin/bash
-g++ lj3d.cpp
+g++ -O3 lj3d.cpp
 
 cnt=0
 rho1=(5.0 4.0)
 rho2=(6.4 0.008)
 
 for x in liq gas; do
-echo $x
+echo ${x^^}
 ########################
 echo 1st run
 time ./a.out << _EOT_
@@ -38,7 +38,8 @@ cp restart.dat ${x}.rst
 cp coord.xyz   ${x}.xyz
 cp monitor.dat ${x}.out
 cnt=$((cnt + 1))
+echo
 done
 
-g++ rdf.cpp ana.cpp -o b.out
+g++ rdf.cpp msd.cpp ana.cpp -o b.out
 ./b.out

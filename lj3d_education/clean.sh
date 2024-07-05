@@ -1,3 +1,3 @@
 #!/bin/bash
 
-rm -f *.dat *.rst *.xyz *.out
+rm -f *.dat *.rst *.xyz *.out *.log
